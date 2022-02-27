@@ -16,5 +16,15 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="bintray" />
+      <option name="name" value="bintray" />
+      <option name="url" value="https://dl.bintray.com/akuznetsov/russianmorphology" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2-repository.dev.java.net" />
+      <option name="name" value="Java.net Repository for Maven" />
+      <option name="url" value="https://download.java.net/maven/2/" />
+    </remote-repository>
   </component>
 </project>
