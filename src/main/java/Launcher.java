@@ -4,7 +4,12 @@ class Launcher {
     public static final String SITE = "https://tproger.ru";
 
     public static void main(String[] args) {
-        Crawler crawler = new Crawler();
-        crawler.crawl();
+        // Crawler crawler = new Crawler();
+        // crawler.crawl();
+        Tokenizer tokenizer = new Tokenizer();
+        tokenizer.tokenize();
+        Lemmatizer lemmatizer = new Lemmatizer();
+        lemmatizer.lemmatize();
+        lemmatizer.groupLemmasByTokens();
     }
 }
