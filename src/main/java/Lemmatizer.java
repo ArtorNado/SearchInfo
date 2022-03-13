@@ -18,9 +18,42 @@ public class Lemmatizer {
                     tokens.addAll(wordBaseForms);
                 } catch (WrongCharaterException | ArrayIndexOutOfBoundsException ignored) {}
             }
-            Utils.writeToFileLineByLine(Utils.TOKENS_LEMMATIZED_FILE_PATH, tokens);
+            Utils.writeToFileLineByLine(
+                    new File(Utils.TOKENS_LEMMATIZED_FILE_PATH),
+                    tokens,
+                    false
+            );
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Записываем все леммы со всех страниц сайта
+    public void lemmatizeMultiple() {
+        File directory = new File(Utils.WORDS_TOKEN_DIR);
+        File[] files = directory.listFiles();
+        if (files == null) return;
+        int i = 1;
+        for (File file : files) {
+            List<String> tokens = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                LuceneMorphology russianLuceneMorphology = new RussianLuceneMorphology();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    try {
+                        List<String> wordBaseForms = russianLuceneMorphology.getNormalForms(line);
+                        tokens.addAll(wordBaseForms);
+                    } catch (WrongCharaterException | ArrayIndexOutOfBoundsException ignored) {}
+                }
+                Utils.writeToFileLineByLine(
+                        new File(Utils.generateFileName(Utils.WORDS_LEMMAS_DIR, i)),
+                        tokens,
+                        false
+                );
+                i++;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -36,8 +69,8 @@ public class Lemmatizer {
             e.printStackTrace();
         }
 
-        Map<String, ArrayList<String>> lemmaToTokensMap = new HashMap<>();
-        uniqueLemmas.forEach(token -> lemmaToTokensMap.put(token, new ArrayList<>()));
+        Map<String, Set<String>> lemmaToTokensMap = new HashMap<>();
+        uniqueLemmas.forEach(token -> lemmaToTokensMap.put(token, new HashSet<>()));
         try (BufferedReader br = new BufferedReader(new FileReader(Utils.TOKENS_FILE_PATH))) {
             LuceneMorphology russianLuceneMorphology = new RussianLuceneMorphology();
             String line;
@@ -46,9 +79,9 @@ public class Lemmatizer {
                     List<String> wordBaseForms = russianLuceneMorphology.getNormalForms(line);
                     String finalLine = line;
                     wordBaseForms.forEach(baseForm -> {
-                        for (Map.Entry<String, ArrayList<String>> entry: lemmaToTokensMap.entrySet()) {
+                        for (Map.Entry<String, Set<String>> entry: lemmaToTokensMap.entrySet()) {
                             String lemma = entry.getKey();
-                            ArrayList<String> tokensArray = entry.getValue();
+                            Set<String> tokensArray = entry.getValue();
                             if(baseForm.equals(lemma)) {
                                 tokensArray.add(finalLine);
                             }
@@ -68,6 +101,11 @@ public class Lemmatizer {
            finalLinesList.add(stringBuilder.toString());
         });
 
-        Utils.writeToFileLineByLine(Utils.GROUPED_TOKENS_BY_LEMMAS_FILE_PATH, finalLinesList);
+        Utils.writeToFileLineByLine(
+                new File(Utils.GROUPED_TOKENS_BY_LEMMAS_FILE_PATH),
+                finalLinesList,
+                false
+        );
     }
+
 }
