@@ -17,7 +17,7 @@ public class Tokenizer {
                 i++;
             }
         }
-        if (writeIntoSingleFile) removeDuplicates(new File(Utils.TOKENS_FILE_PATH), false);
+        if (writeIntoSingleFile) removeDuplicates(new File(Utils.TOKENS_FILE_PATH), true);
     }
 
     private void tokenizeAndWriteFile(File source, boolean needToWriteInSingleFile, Integer index) {

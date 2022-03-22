@@ -96,7 +96,7 @@ public class Lemmatizer {
         List<String> finalLinesList = new ArrayList<>();
         lemmaToTokensMap.forEach((lemma, tokens) -> {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(lemma).append(": ");
+            stringBuilder.append(lemma).append(" ");
             tokens.forEach((token) -> stringBuilder.append(token).append(" "));
            finalLinesList.add(stringBuilder.toString());
         });
