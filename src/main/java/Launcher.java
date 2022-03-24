@@ -19,7 +19,10 @@ class Launcher {
 //        lemmatizer.lemmatizeMultiple();
 //        InvertedIndexer invertedIndexer = new InvertedIndexer();
 //        invertedIndexer.execute();
-        BooleanSearch booleanSearch = new BooleanSearch();
-        booleanSearch.execute();
+//        BooleanSearch booleanSearch = new BooleanSearch();
+//        booleanSearch.execute();
+//         Задание 4
+        Counter counter = new Counter();
+        counter.countIndicators();
     }
 }

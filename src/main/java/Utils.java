@@ -10,9 +10,14 @@ public class Utils {
     public static final String TOKENS_LEMMATIZED_FILE_PATH = "words/tokens_lemmatized.txt";
     public static final String GROUPED_TOKENS_BY_LEMMAS_FILE_PATH = "words/tokens_grouped_by_lemmas.txt";
     public static final String INDEXED_WORDS_FILE_PATH = "words/words_indexed.txt";
+    public static final String IDFS_TOKENS_FILE_PATH = "words/idfs_tokens.txt";
+    public static final String IDFS_LEMMAS_FILE_PATH = "words/idfs_lemmas.txt";
 
     public static final String WORDS_LEMMAS_DIR = "words-lemma";
     public static final String WORDS_TOKEN_DIR = "words-tokens";
+    public static final String LEMMAS_COUNTERS_DIR = "lemma-counters";
+    public static final String TOKENS_COUNTERS_DIR = "token-counters";
+    public static final String SITE_PAGES_DIR = "sites";
 
     public static String generateFileName(String dirName, Integer index) {
         return dirName.concat("/").concat(String.valueOf(index)).concat(".txt");

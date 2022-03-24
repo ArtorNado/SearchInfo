@@ -14,7 +14,7 @@ public class InvertedIndexer {
         )) {
             String tokenLemmatizedLine;
             while ((tokenLemmatizedLine = br.readLine()) != null) {
-                tokenLemmatizedLine = tokenLemmatizedLine.split(": ")[0];
+                tokenLemmatizedLine = tokenLemmatizedLine.split(" ")[0];
                 File directory = new File(Utils.WORDS_LEMMAS_DIR);
                 File[] files = directory.listFiles();
                 if (files == null) return;

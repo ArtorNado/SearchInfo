@@ -61,7 +61,7 @@ public class Crawler {
     }
 
     private void saveInFile(String text, String filename) {
-        try (PrintStream out = new PrintStream("sites/" + filename)) {
+        try (PrintStream out = new PrintStream(Utils.SITE_PAGES_DIR + "/" + filename)) {
             out.print(text);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
