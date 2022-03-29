@@ -62,6 +62,7 @@ public class Counter {
                     double tfCounter = amountOfEnters / allTokens.size();
 
                     // IDF
+                    if (idfsForTokens.get(token) == null) continue;
                     double idfCounter = idfsForTokens.get(token);
 
                     // TF-IDF
@@ -123,6 +124,7 @@ public class Counter {
                     double tfCounter = amountOfEnters / allLemmas.size();
 
                     // IDF
+                    if (idfsForTokens.get(token) == null) continue;
                     double idfCounter = idfsForLemmas.get(token);
 
                     // TF-IDF

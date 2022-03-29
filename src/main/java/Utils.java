@@ -1,5 +1,7 @@
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Utils {
 
@@ -47,5 +49,22 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<Integer, String> findLinksForDocumentNumbers(List<Integer> documentNumbers) {
+        Map<Integer, String> result = new HashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("index.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.replace(" ", "").split("-") ;
+                Integer documentNumberCurrentLine = Integer.parseInt(values[0]);
+                if (documentNumbers.contains(documentNumberCurrentLine)) {
+                    result.put(documentNumberCurrentLine, values[1]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
