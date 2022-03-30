@@ -57,6 +57,8 @@ public class Crawler {
 
     private void handleDocForText(Document doc) {
         if (doc == null) return;
+        if (doc.body() == null) return;
+        if (doc.body().text() == null) return;
         tempPageText = doc.body().text();
     }
 
